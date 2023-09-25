@@ -1,7 +1,17 @@
-// implement a function called sayHello that takes the name of the saluted and returns what would be said.
-const sayHello = () => {
+// implement a function called sayHello that takes the name of the saluted entity and returns what would be said.
+const sayHello = (name) => {
+    const returnValue = `Hello, ${name}!`;
+    return returnValue;
 };
 
-// show some test code here at first, and then factor it out later
+const sayGoodbye = (name) => {
+    const returnValue = `Goodbye, ${name}!`;
+    return returnValue;
+};
 
 // make the functions exportable
+module.exports = {
+    sayHello: sayHello,
+    sayGoodbye: sayGoodbye
+};
+console.log('this is the end of the production code');
