@@ -1,15 +1,25 @@
 # W02D01 - TDD, CommonJS, and NPM
 
+
+<!-- unit testing
+functional testing
+end to end
+integration testing
+
+assert <---- a tool for testing -->
+
+
+
 ### To Do
-- [] Manual testing
-- [] Bringing in outside code
-- [] Making assertions
-- [] Exporting our code
-- [] Intro to NPM: a Node package manager
-- [] Mocha test runner
-- [] Ignoring files/folders
-- [] What is TDD?
-- [] Chai assertion library
+- [x] Manual testing
+- [x] Bringing in outside code
+- [x] Making assertions
+- [x] Exporting our code
+- [x] Intro to NPM: a Node package manager
+- [x] Mocha test runner
+- [x] Ignoring files/folders
+- [x] What is TDD?
+- [x] Chai assertion library
 
 ### `module.exports` and `require`
 - We can export functions, objects, etc from a file using the `module.exports` object
