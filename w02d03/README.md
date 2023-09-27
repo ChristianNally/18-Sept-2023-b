@@ -5,57 +5,28 @@
 - [x] TCP introduction
 - [x] TCP demo
 
-### Networking
-* computers talking to each other
+### What is networking?
+- Communication between machines on a network
 
-### Protocols
-* standardized way of sending messages
+### What is a protocol?
+- A defined standard for how requests and responses are sent between network devices
 
-### Internet Protocol (IP)
-* addressing computers
-* ip address
-  * IPv4: 192.168.0.0 127.0.0.1
-  * IPv6: 2001:db8:3333:4444:5555:6666:7777:8888
-* ports - apartment numbers
-  * 65,535 ports to choose from
-  * 80 http
-  * 443 https
-  * 5432 postgres
-  * 3000 - 8000 development purposes
+### Transport Layer Protocols
+- Break data into packets to be sent over the network layer
+- Give each packet a header with origin and destination
+- **UDP**: **U**ser **D**atagram **P**rotocol
+  - Smaller header size (8 bytes) which results in smaller packet sizes
+  - _Connectionless_ ie. there is no need to establish or maintain a connection
+  - No error recovery (any corrupted packets are discarded)
+  - Packets can arrive in any order
+  - Useful for streaming/low latency applications
+- **TCP**: **T**ransportation **C**ontrol **P**rotocol
+  - Larger header size (20 bytes)
+  - Requires a connection (3-way handshake)
+  - Corrupted packets are reported to the server and are re-sent
+  - Packets arrive in order
+  - Useful when guaranteed communication is needed
 
-### Packets
-* divided up into packets
-* header => address of the origin and the destination
-
-### TCP = Transport Control Protocol
-* larger header sizes
-* requires a connection (3 way handshake)
-* security
-
-### UDP = User Datagram Protocol
-* smaller header sizes
-* connectionless
-* low latency applications (streaming)
-
-server => has information
-clients => want information
-
-server <== TCP ==> clients
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Useful Links
+* [OSI Model](https://en.wikipedia.org/wiki/OSI_model)
+* [Net package documentation](https://nodejs.org/api/net.html)
