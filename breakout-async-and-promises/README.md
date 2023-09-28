@@ -1,39 +1,8 @@
 # BREAKOUT - Async and Promises
 
 ### To Do
-* [ ] Async Flow Review
-* [ ] Async Return Values
-* [ ] Promise Review
-* [ ] Running Promises in Parallel
-* [ ] Questions?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* [x] Async Flow Review
+* [x] Async Return Values
+* [x] Promise Review
+* [x] Running Promises in Parallel
+* [x] Questions?
