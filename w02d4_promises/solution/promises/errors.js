@@ -5,15 +5,15 @@ const returnRejectedPromise = functions.returnRejectedPromise;
 
 // throw new Error('ooooops');
 
-returnPromise('one',1000)
+returnPromise('one', 1000)
   .then((data) => {
-    console.log(data);
-    return returnPromise('two',1000);
+    console.log('data', data);
+    return returnPromise('two', 1000);
   })
-  .catch((err) => {
-    // throw err;
-    console.log('different err:',err);
-  })
+  // .catch((err) => {
+  //   // throw err;
+  //   console.log('different err:',err);
+  // })
   .then((data) => {
     console.log(data);
     return returnPromise('three',1000);

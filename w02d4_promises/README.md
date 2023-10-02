@@ -5,7 +5,8 @@
 - [x] Introduction to Promises
 - [x] Error handling with Promises (vs callbacks)
 - [x] Parallelizing async things (Promise.race and Promise.all)
-- [] Creating our own Promises
+- [x] The Chain
+- [x] Creating our own Promises
 
 ### Promises
 - An object that may (or may not) resolve to a value in the future

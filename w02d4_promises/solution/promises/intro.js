@@ -1,11 +1,11 @@
 const promiseGenerator = require('./promise-generator');
 const returnPromise = promiseGenerator.returnPromise;
+const returnRejectedPromise = promiseGenerator.returnRejectedPromise;
 
-const promise = returnPromise('first promise', 4444);
-console.log('promise:',promise);
+const promise = returnPromise('first promise', 444);
+console.log('promise:', promise);
 
 console.log('first');
-console.log('second');
 
 // Not the best way to do this
 // setTimeout(()=>{
@@ -22,7 +22,14 @@ promise
     // const newData = 'another thing';
     // console.log("newData:",newData);
     console.log('data:', data);
-  }) // <--- that is just a function call. no magic there!
-  .then(() => {
-    console.log('it is alive!');
+    // return returnRejectedPromise('second promise', 222);
+    return Promise.all(arrayPromises);
+  })
+  .then((data) => {
+    console.log('it is alive!', data);
+  })
+  .catch((error) => {
+    console.log('error:', error);
   });
+
+console.log('second');
