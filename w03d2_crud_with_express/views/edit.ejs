@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Music Button</title>
+</head>
+<body>
+    
+<h1>Edit Music Button</h1>
+
+<form action="/edit/<%= buttonName %>" method="POST">
+
+    <label for="buttonName">Name</label>    
+    <input name="buttonName" type="text" id="buttonName" value="<%= buttonName %>"/>
+
+    <label for="buttonUrl">Url</label>    
+    <input name="buttonUrl" type="text" id="buttonUrl" value="<%= buttonUrl %>"/>
+
+    <label for="buttonGenre">Genre</label>    
+    <input name="buttonGenre" type="text" id="buttonGenre" value="<%= buttonGenre %>"/>
+
+    <button name="monkey">Update</button>
+</form>
+
+</body>
+</html>

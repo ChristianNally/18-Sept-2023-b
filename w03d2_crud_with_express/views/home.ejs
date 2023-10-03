@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Buttons Home Page</title>
+</head>
+<body>
+    
+<h1>Music Buttons</h1>
+
+<table>
+<tbody>
+<tr>
+    <th>Name</th>
+    <th>Listen</th>
+    <th>Details</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</tr>
+<% for (let key in music_database) { %>
+<tr>
+    <td><%= music_database[key].name %></td>
+    <td><a href="<%= music_database[key].url %>" target="_blank">⛓️</a></td>
+    <td><a href="/read/<%= key %>">👀</a></td>
+    <td><a href="/edit/<%= key %>">✏️</a></td>
+    <td><a href="/delete/<%= key %>">🗑️</a></td>
+</tr>
+<% } %>
+</tbody>
+</table>
+
+<a href="/add">Add Music Button</a>
+
+</body>
+</html>
