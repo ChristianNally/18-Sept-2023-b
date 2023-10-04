@@ -7,3 +7,6 @@
 * [W02D03 - Networking with TCP](/w02d03/)
 * [BREAKOUT - Async and Promises](/breakout-async-and-promises/)
 * [BREAKOUT - Technical Interview Prep](/breakout-ti-prep/)
+* [W03D01 - Web Servers 101](/w03d1_web_servers_101/)
+* [W03D02 - CRUD with Express](/w03d2_crud_with_express/)
+* [W03D03 - HTTP Cookies & User Authentication](/w03d03/)
