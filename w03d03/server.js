@@ -1,7 +1,7 @@
 // 2000, 65535
-const express = require('express');
-const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const port = 3000;
@@ -21,27 +21,27 @@ const users = {
 };
 
 // configuration
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 // middleware
-app.use(morgan('dev')); // (req, res, next) => {}
+app.use(morgan("dev")); // (req, res, next) => {}
 app.use(express.urlencoded({ extended: false })); // creates req.body
 app.use(cookieParser()); // creates req.cookies
 
 // GET /login
-app.get('/login', (req, res) => {
-  res.render('login');
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
 // POST /login
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   // grab the information from the incoming body
   const email = req.body.email;
   const password = req.body.password;
 
   // did they NOT submit an email and password?
   if (!email || !password) {
-    return res.status(400).send('please provide an email and password');
+    return res.status(400).send("please provide an email and password");
   }
 
   // lookup the user based on their email address
@@ -57,64 +57,64 @@ app.post('/login', (req, res) => {
 
   // did we NOT find a user?
   if (!foundUser) {
-    return res.status(400).send('no user with that email found');
+    return res.status(400).send("no user with that email found");
   }
 
   // do the passwords NOT match
   if (foundUser.password !== password) {
-    return res.status(400).send('passwords do not match');
+    return res.status(400).send("passwords do not match");
   }
 
   // the user is who they say they are!!!
   // set a cookie
-  res.cookie('userId', foundUser.id);
+  res.cookie("userId", foundUser.id);
 
   // send the user somewhere
-  res.redirect('/protected');
+  res.redirect("/protected");
 });
 
 // GET /protected
-app.get('/protected', (req, res) => {
+app.get("/protected", (req, res) => {
   // grab the information from the cookies
   const userId = req.cookies.userId;
 
   // do they NOT have a cookie
   if (!userId || !users[userId]) {
-    return res.status(401).send('you must be logged in to see this page');
+    return res.status(401).send("you must be logged in to see this page");
   }
 
   // they are signed in
   const user = users[userId];
   const templateVars = {
-    email: user.email
+    email: user.email,
   };
 
-  res.render('protected', templateVars);
+  res.render("protected", templateVars);
 });
 
 // POST /logout
-app.post('/logout', (req, res) => {
+app.post("/logout", (req, res) => {
   // clear the cookie
-  res.clearCookie('userId');
+  res.clearCookie("userId");
 
   // redirect somewhere
-  res.redirect('/login');
+  res.redirect("/login");
 });
 
 // GET /register
-app.get('/register', (req, res) => {
-  res.render('register');
+app.get("/register", (req, res) => {
+  res.render("register");
 });
 
 // POST /register
-app.post('/register', (req, res) => {
+app.post("/register", (req, res) => {
   // grab the information from the incoming body
   const email = req.body.email;
   const password = req.body.password;
 
   // did they NOT submit an email and password?
   if (!email || !password) {
-    return res.status(400).send('please provide an email and password');
+    return res.status(400).send("please provide an email and password");
   }
 
   // look for a user based on the email provided
@@ -130,7 +130,7 @@ app.post('/register', (req, res) => {
 
   // did we find a user?
   if (foundUser) {
-    return res.status(400).send('a user with that email is already registered');
+    return res.status(400).send("a user with that email is already registered");
   }
 
   // the email must be unique
@@ -140,14 +140,14 @@ app.post('/register', (req, res) => {
   const user = {
     id: id,
     email: email,
-    password: password
+    password: password,
   };
 
   users[id] = user;
   console.log(users);
 
   // send the user somewhere
-  res.redirect('/login');
+  res.redirect("/login");
 });
 
 app.listen(port, () => {
