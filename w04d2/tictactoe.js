@@ -46,7 +46,7 @@ $(document).ready(function () {
         $('#player').html('X');
       }  
     } else { // playerDidWin
-      $('#message').html(`Player ${player} has won! Click <a href=""></a> to play again!`);
+      $('#message').html(`Player ${player} has won! Click <a href="">here</a> to play again!`);
     }
   });
 });
