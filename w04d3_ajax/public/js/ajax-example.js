@@ -1,57 +1,26 @@
 $(document).ready(function () {
 
-  function resultTurnedIntoDOM(data){
-    const $elementsForDisplay = $('<div class="canada-covid-data"></div>');
-    const $infected = $('<div class="infected">Infected: ' + data.infected + '</div>');
-    $elementsForDisplay.append($infected);
-
-    const setOfRegions = data.infectedByRegion;
-    const $regions = $(`
-    <table class="regions">
-      <tr>
-        <th>Region</th>
-        <th>Infected</th>
-        <th>Deceased</th>
-      </tr>
-    </table>
-    `);
-
-    jQuery.each(setOfRegions, (key) => {
-      $regions.append(`
-      <tr>
-      <td>${setOfRegions[key].region}</td>
-      <td>${setOfRegions[key].infectedCount}</td>
-      <td>${setOfRegions[key].deceasedCount}</td>
-      </tr>
-      `);
-    });
-
-    $regions.appendTo($elementsForDisplay);
-    // Same As: $elementsForDisplay.append($regions);
-
-    return $elementsForDisplay;
-  }
-
-  $("form").on("submit", function (event) {
+  $('form').on('submit', function (event) {
     event.preventDefault();
-    console.log("the default event result has been prevented");
-    let url = "https://api.apify.com/v2/key-value-stores/fabbocwKrtxSDf96h/records/LATEST?disableRedirect=true";
-
+    // console.log('event', event);
     $.ajax({
-      url: url,
-      method: "GET", // POST, PUT, DELETE, ... 
+      url: 'https://www.reddit.com/r/labrador/top.json?limit=10&t=year',
+      method: 'GET'
     })
-    .then((result) => {
-      console.log('ajax callback called');
-      console.log('result:',result);
-      $('#display').html(resultTurnedIntoDOM(result));
-      history.pushState(null,"Stats Retrieved",'/#data');
-    })
-    .catch(err => {
-      console.log('ajax error caught');
-      console.log(err); // related error
-    });
-
+      .then(function (response) {
+        //      console.log('response.data.children', response.data.children);
+        const tableHTML = `<table></table>`;
+        const $newTable = $(tableHTML);
+        const $tableBody = $('<tbody id="table-body"><tr><th>Title</th><th>Author</th></tr></tbody>');
+        for (let post of response.data.children) {
+          console.log('post.data.title', post.data.title);
+          $tableBody.append(`<tr><td><a href="https://old.reddit.com${post.data.permalink}" target="_blank">${post.data.title}</a></td><td>${post.data.author}</td></tr>`);
+        }
+        $newTable.append($tableBody);
+        $('#display').append($newTable);
+      })
+      .catch(function (error) {
+        console.log('error', error);
+      });
   });
-
 });
