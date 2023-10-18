@@ -11,3 +11,4 @@
 * [W03D02 - CRUD with Express](/w03d2_crud_with_express/)
 * [W03D03 - HTTP Cookies & User Authentication](/w03d03/)
 * [W03D04 - Security & Real World HTTP Servers](/w03d04/)
+* [W05D03 - SQL from our Apps](/w05d03/)
