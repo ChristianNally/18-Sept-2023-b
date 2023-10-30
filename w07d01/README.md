@@ -6,68 +6,69 @@
 - [x] JavaScript and XML (JSX)
 - [x] Props
 
-### What is React?
-* a library for creating user interfaces (react-native, react-ink, react-dom)
-* open source project maintained by Facebook
-* declarative => what we want to accomplish; not how
-* is component-based
+### React
+- From the landing page of [React](https://react.dev/):
+  > A JavaScript library for building user interfaces
+- Open source project maintained by Facebook
+- React is built around the concept of managing data
+  - Changes to the underlying data result in changes to the UI
+  - In React, state === data
+- Component-based: UI is composed of small pieces
+- Declarative: We describe the final outcome of our code and not the step-by-step process to achieve that result
 
-1. a user submits a tweet
-2. fetch the new tweets
-3. call renderTweets function
-4. call createTweetElement function
-5. append to the DOM
+### JavaScript and XML (JSX)
+* JSX is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file
+* Since it's based on XML, it's more strict than HTML:
+  * You can only return one top-level element from a given component
+  * Every element **must** have a closing tag
+  * A React component must be capitalized
+  * JavaScript expressions can be included using curly braces (`{}`)
+  * `class` is a reserved word in JavaScript so we have to use `className` instead
 
-1. how should the webpage look
-2. give React data
-3. React updates the DOM as needed
-
-
-
-framework => has rules that we have to follow
-library => collection of useful functions
-
-framework <=============React========> library
-
-### JSX
-* JavaScript and XML
-* XML => eXtensible Markup Language
-
-```xml
-<user>
-  <username>Alice</username>
-  <password>1234</password>
-</user>
-```
-
-### Rules of JSX
-* each element MUST have a closing tag (or be self-closing)
-* can't use reserved words like `class` and `for`
-* each component MUST be capitalized
-* include JS in our JSX with `{}`
-
+### Components
+- Components are the building blocks of a webpage (eg. search input, navigation bar, contact us form)
+- Ideally, components should be reusable (which means that their state should be passed into them via props rather than maintaining their own state)
+- Deciding which DOM elements become components and which don't is a skill that comes with practice and experience
+- We will be building all of our components using functions
+- The functions return value contains a mixture of HTML and JS; React calls this `JSX`
 
 ```jsx
-const attributes = { 
-  alt: 'happy dog', 
-  className: 'dog',
-  src: 'https://cdn-icons-png.flaticon.com/256/616/616554.png',
-  role: ''
+// basic component
+import React from 'react';
+
+const MyComponent = () => {
+  return (
+    <div className="my-component">
+      <h1>Hello World</h1>
+    </div>
+  );
 };
 
-<label htmlFor="" />
-
-return React.createElement('img', attributes);
+export default MyComponent;
 ```
 
+### Passing Props
+- Child components can be passed pieces of data from their parent component
+- These props are accepted in the child component as an argument (usually called `props`)
 
-CommonJS => module.exports && require
-ESModules (ESM) => import && export
+```jsx
+// in parent component
+import MyComponent from './components/MyComponent.jsx';
 
-* Props => data from outside our function
+// inside the parent's return
+<MyComponent studentName="Alice"></MyComponent>
 
+// inside child component
+const MyComponent = (props) => {
+  return (
+    <div>
+      <h1>Hello { props.studentName }!</h1>
+    </div>
+  );
+};
+```
 
+- Props are not limited to JS primitives and data structures; you can also pass behaviour from parent-to-child in the form of functions
 
-
-
-
+### Useful Links
+- [ReactJS Docs](https://reactjs.org/docs/getting-started.html)
