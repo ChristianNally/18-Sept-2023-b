@@ -8,109 +8,102 @@
 - [x] The `useEffect` Flow
 - [x] Data Fetching
 
-parent => child (prop passing)
-parent => child => child => child (prop drilling)
-context => stores the data in a separate file
-
-photos={props.photos}
-props.photo
-
-
-props
-props.children
-
-
 ### Pure Functions
-* if called with the same args, returns the same result
-* has no side effects
-
-### Side Effect
-* Whenever our code reaches outside of itself
-  * console.log
-  * data fetching
-  * set timers and intervals
-  * modifying the DOM
-* document.ready
-* something happened and then...
+- A function is said to be pure if:
+  - It produces no side-effects
+  - It will return the same value if called with the same arguments
 
 ```js
-let additive = 15;
-let externalUser = null;
+// simple pure functions
+const add = (num1, num2) => {
+  return num1 + num2;
+};
 
-const addTwo = (num) => {
-  const result = num + additive;
-  externalUser = {};
-  return result;
+const sayHello = (name) => {
+  return `Hello there ${name}!`;
 };
 ```
 
-```js
-useEffect(() => {}); // called on every render
-useEffect(() => {}, [username]); // called on initial render and then only if username changes 
-useEffect(() => {}, []); // only called on initial render and then never again
-```
+### Side Effects
+- Any operation that modifies the state of the computer or interacts with something outside of your program is said to have a **side effect**
+- Common _side effects_:
+  - Writing to standard out (eg. `console.log`)
+  - Modifying the DOM directly (instead of relying on React)
+  - Establishing socket connections (eg. `ws` or `Socket.io`)
+  - Retrieving data from an API (eg. `axios`, `jQuery`, or the `fetch` API)
+  - Setting timers or intervals
 
+### `useEffect`
+- `useEffect` is a Hook we can use to deal with side effects in our components
+- The _effect_ hook fires after the browser has _painted_ the DOM
+- Multiple _effect_ hooks can be used inside of a single component to group similar operations together
 
-useState(null);
+```jsx
+const MyComponent = (props) => {
+  const [user, setUser] = useState({});
 
-
-Uncaught TypeError: Cannot read properties of null (reading 'map')
-    at PhotoList (bundle.js:455:28)
-    at renderWithHooks (react-dom.development.js:16305:1)
-    at updateFunctionComponent (react-dom.development.js:19588:1)
-    at beginWork (react-dom.development.js:21601:1)
-    at HTMLUnknownElement.callCallback (react-dom.development.js:4164:1)
-    at Object.invokeGuardedCallbackDev (react-dom.development.js:4213:1)
-    at invokeGuardedCallback (react-dom.development.js:4277:1)
-    at beginWork$1 (react-dom.development.js:27451:1)
-    at performUnitOfWork (react-dom.development.js:26557:1)
-    at workLoopSync (react-dom.development.js:26466:1)
-
-```js
-const useApplicationData = function() {
-
-  const [state, dispatch] = useReducer(reducer, {
-    similarPhotos: [],
-    selectedPhoto: null,
-    favourites: [],
-    displayModal: false,
-    photoData: [],
-    topicData: [],
-    category_photos: [],
-    topic_id: null
-  });  
-  
-  I have this  
   useEffect(() => {
-    fetch("/api/photos")
-      .then((response) => response.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
-  }, []);     using empty error I think
+    // retrieve user information from an API and update local state with the response
+    axios(`/users/${props.userId}`)
+      .then(response => setUser(response.data));
+  });
 
+  return (
+    <div className="my-component">
+      <p>You are logged in as { user.username }</p>
+    </div>
+  );
+};
 ```
 
+### Dependencies
+- The second argument to `useEffect` is a dependency array that lets you specify when you want the hook to run
+- The hook will run again anytime the value of a dependency changes
+- **NOTE:** It is possible to get stuck in an infinite loop if the _effect_ hook updates a value in the dependency array
 
+```jsx
+// will run every time the value of user.firstName changes
+useEffect(() => {
+  document.title = `${user.firstName}'s Home Page`;
+}, [user.firstName]);
 
+// infinite loop because it runs every time count gets updated
+useEffect(() => {
+  setCount(count + 1);
+}, [count]);
+```
 
-CORS (Cross-Origin Resource Sharing)
-localhost:3000 => React
-localhost:3001 => Photolabs BE
+### Cleanup
+- Sometimes side effects need to be cleaned up (eg. socket connections terminated)
+- To perform cleanup, return a function from your `useEffect`
 
+```jsx
+const [counter, setCounter] = useState(0);
 
-npm cors
-app.use(cors(());
+useEffect(() => {
+  // set up an interval to increment a counter
+  const myInterval = setInterval(() => {
+    setCounter(prev => prev + 1);
+  }, 1000);
 
+  // declare a cleanup function to clear the interval
+  const cleanup = () => {
+    clearInterval(myInterval);
+  };
 
-npm install
-npm run build
-npm start
+  return cleanup;
+}, []);
+```
 
+### _useEffect_ Flow
+1. React turns your JSX into HTML (client-side rendering) and updates the DOM
+2. The browser responds to the change by updating the UI
+3. Any cleanup for effects from the previous render are performed
+4. New effects for the current render are performed
 
+![_useEffect_ flow](https://raw.githubusercontent.com/andydlindsay/lectures/master/w08d01/useEffect%20Flow.png)
 
-
-
-
-
-
-
-
+### Useful Links
+- [React Docs: Hook Rules](https://reactjs.org/docs/hooks-rules.html)
+- [Wikipedia: Pure Function](https://en.wikipedia.org/wiki/Pure_function)
+- [Wikipedia: Side Effect](https://en.wikipedia.org/wiki/Side_effect_(computer_science))
