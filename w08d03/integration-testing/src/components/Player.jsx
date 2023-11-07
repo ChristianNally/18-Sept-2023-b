@@ -1,8 +1,7 @@
 import React from 'react';
 
 const Player = (props) => {
-  const {options, isDisabled} = props.state;
-  const {setPlayerSelection} = props;
+  const {setPlayerSelection, state: {options, isDisabled}} = props;
 
   const mappedOptions = options.map((option) => {
     const [choice, symbol] = option;
