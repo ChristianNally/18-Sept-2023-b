@@ -1,4 +1,4 @@
-import { calcStatus } from '../helpers'
+import { calcStatus, skynet } from '../helpers'
 
 describe('announceResult function', () => {
   let fakeState;
@@ -33,4 +33,29 @@ describe('announceResult function', () => {
   test('returns "Waiting" if nothing is passed in', () => {
     expect(calcStatus()).toBe('Waiting');
   });
+});
+
+describe('skynet function', () => {
+
+  test('when cheating is false, returns a valid response', () => {
+    const playerSelection = 'Moai';
+    const isCheating = false;
+    const actual = skynet(playerSelection, isCheating);
+
+    const options = ['Moai', 'Axe', 'Tree'];
+
+    // expect(options.includes(actual)).toBe(true);
+    expect(options).toContain(actual);
+  });
+
+  test('when cheating is true, returns the winning response', () => {
+    const playerSelection = 'Moai';
+    const isCheating = true;
+    const actual = skynet(playerSelection, isCheating);
+
+    const expected = 'Tree';
+
+    expect(actual).toBe(expected);
+  });
+
 });

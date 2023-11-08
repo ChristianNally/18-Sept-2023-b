@@ -25,3 +25,20 @@ export const genFeedbackMessage = (status) => {
   };
   return lookup[status];
 };
+
+export const skynet = (playerSelection, isCheating) => {
+  if (isCheating) {
+    const winningChoices = {
+      Moai: 'Tree',
+      Axe: 'Moai',
+      Tree: 'Axe',
+    };
+
+    return winningChoices[playerSelection];
+  }
+
+  const options = ['Moai', 'Axe', 'Tree'];
+  const randomIndex = Math.floor(Math.random() * options.length);
+
+  return options[randomIndex];
+};
