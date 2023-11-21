@@ -15,3 +15,8 @@
 * [W05D05 - Mid-term Project Kickoff](/w05d05/)
 * [BREAKOUT - Express Router](/breakout-express-router/)
 * [W07D01 - JSX and Props](/w07d01/)
+* [W07D04 - React Developer Workflow](/w07d4_react_developer_workflow/)
+* [W07D05 - Custom Hooks](/w07d05/)
+* [W08D01 - Data Fetching & Other Side Effects](/w08d01/)
+* [W08D03 - Unit & Integration Testing](/w08d03/)
+* [W08D05 - Intro to Ruby](/w08d05/)
