@@ -1,0 +1,9 @@
+<h1>URLS</h1>
+
+<%= @urls.inspect %>
+
+<ul>
+<% @urls.each do |url| %>
+    <li><%= url.shortURL %>&nbsp;<%= url.longURL %></li>
+<% end %>
+</ul>

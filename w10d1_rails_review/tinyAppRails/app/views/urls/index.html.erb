@@ -1,0 +1,12 @@
+<h1>List of URLs</h1>
+
+<%= @urls %>
+
+<table>
+    <tbody>
+      <tr><th>shortURL</th><th>longURL</th></tr>
+<% @urls.each do |url| %>
+  <tr><td><%= url.shortURL %></td><td><%= url.longURL %></td></tr>
+<% end %>
+    </tbody>
+</table>
