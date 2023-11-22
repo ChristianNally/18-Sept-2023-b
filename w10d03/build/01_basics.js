@@ -1,0 +1,10 @@
+"use strict";
+let myNum = 5;
+myNum = 42;
+myNum = 'hello';
+myNum = true;
+const nums = [];
+nums.push(42);
+nums.push(true);
+// nums.push('hello');
+const myVar = nums.pop();

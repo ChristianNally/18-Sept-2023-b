@@ -20,3 +20,4 @@
 * [W08D01 - Data Fetching & Other Side Effects](/w08d01/)
 * [W08D03 - Unit & Integration Testing](/w08d03/)
 * [W08D05 - Intro to Ruby](/w08d05/)
+* [ADVANCED - Intro to TypeScript](/w10d03/)
